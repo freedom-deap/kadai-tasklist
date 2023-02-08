@@ -20,5 +20,7 @@
 
             <button type="submit" class="btn btn-primary btn-outline">更新</button>
         </form>
+        {{-- タスク詳細ページへのリンク --}}
+        <a class="btn btn-outline" href="{{ route('tasks.show', $task->id) }}">詳細ページに戻る</a>
     </div>
 @endsection
