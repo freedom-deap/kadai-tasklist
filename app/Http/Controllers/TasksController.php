@@ -14,7 +14,6 @@ class TasksController extends Controller
      */
     public function index()
     {
-        //
         $tasks = Task::all();
         return view('tasks.index', ['tasks' => $tasks]);
     }
@@ -26,7 +25,6 @@ class TasksController extends Controller
      */
     public function create()
     {
-        //
         return view('tasks.create');
     }
 
@@ -38,7 +36,6 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $request->validate([
             'content' => 'required',
             'status' => 'required|max:10',
@@ -60,7 +57,6 @@ class TasksController extends Controller
      */
     public function show($id)
     {
-        //
         $task = Task::findOrFail($id);
         return view('tasks.show', ['task' => $task]);
     }
@@ -95,8 +91,8 @@ class TasksController extends Controller
         $task = Task::findOrFail($id);
         $task->content = $request->content;
         $task->status = $request->status;
-        
         $task->save();
+        
         return redirect('/');
     }
 
@@ -108,7 +104,6 @@ class TasksController extends Controller
      */
     public function destroy($id)
     {
-        //
         $task = Task::findOrFail($id);
         $task->delete();
         
