@@ -13,6 +13,6 @@ class Task extends Model
     
     public function user()
     {
-        return $tthis->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 }

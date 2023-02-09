@@ -14,7 +14,8 @@ class TasksController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
+        $tasks = Task::join('users', 'users.id', '=', 'tasks.user_id')
+                    ->get(['tasks.*', 'users.name']);
         return view('tasks.index', ['tasks' => $tasks]);
     }
 
@@ -57,7 +58,15 @@ class TasksController extends Controller
      */
     public function show($id)
     {
+        $user = \Auth::user();
+        
         $task = Task::findOrFail($id);
+        
+        if($user->id !== $task->user_id)
+        {
+            return redirect('/');
+        }
+
         return view('tasks.show', ['task' => $task]);
     }
 
@@ -71,6 +80,14 @@ class TasksController extends Controller
     {
         //
         $task = Task::findOrFail($id);
+        $user = \Auth::user();
+        
+        $task = Task::findOrFail($id);
+        
+        if($user->id !== $task->user_id)
+        {
+            return redirect('/');
+        }
         return view('tasks.edit', ['task' => $task]);
     }
 
