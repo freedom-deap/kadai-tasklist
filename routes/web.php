@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TasksController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,11 @@ use App\Http\Controllers\TasksController;
 |
 */
 
-Route::get('/', [TasksController::class, 'index']);
-Route::resource('tasks', TasksController::class);
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [TasksController::class, 'index'])->middleware(['auth']);
+Route::resource('tasks', TasksController::class)->middleware(['auth']);
+
+require __DIR__.'/auth.php';
