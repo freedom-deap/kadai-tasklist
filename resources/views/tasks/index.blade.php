@@ -11,7 +11,6 @@
             <thead>
                 <tr>
                     <th>id</th>
-                    <th>タスク作成者</th>
                     <th>タスク内容</th>
                     <th>ステータス</th>
                 </tr>
@@ -20,7 +19,6 @@
                 @foreach ($tasks as $task)
                 <tr>
                     <td><a class="link link-hover text-info" href="{{ route('tasks.show', $task->id) }}">{{ $task->id }}</a></td>
-                    <td>{{ $task->name }}</td>
                     <td>{{ $task->content }}</td>
                     <td>{{ $task->status }}</td>
                 </tr>
